@@ -1,0 +1,266 @@
+<%- include layouts/header.ejs%>
+<div class="wrapper">
+    <%- include layouts/left_nav.ejs%>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('onconnection', function(value) {
+
+         socket.on('updateValues',function(data){
+//          var json = $.parseJSON(data);
+//          alert(json.data_sfr);
+//             alert(data.data_sfr);
+             var sfr = "<tr><td>SFR</td><td>"+data.data_sfr+"</td></tr>";
+             var pm_1 = "<tr><td>PM 1</td><td>"+data.data_pm1+"</td></tr>";
+             var pm_2 = "<tr><td>PM 2.5</td><td>"+data.data_pm2+"</td></tr>";
+             //var pm_5 = "<tr><td>PM 5</td><td>"+data.data_pm5+"</td></tr>";
+             var pm_10 = "<tr><td>PM 10</td><td>"+data.data_pm10+"</td></tr>";
+             var data_elapsedtime = "<tr><td>Sampling Period</td><td>"+data.data_elapsedtime+"</td></tr>";
+             $("#params").html("<tr> <th>Parameter</th> <th>Values</th> </tr>"+sfr+data_elapsedtime+pm_1+pm_2+pm_10);
+
+
+         });
+         socket.on('users',function(data){
+//               console.log(JSON.stringify(data));
+           // var
+         });
+        });
+
+    </script>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Real Time </a>
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <div class="row">
+                                   <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" >Start Reading</button>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="col-md-3">
+                                        <label style=" margin-top: 7%;white-space: nowrap;">Sampling Period</label>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <input type="number" class="form-control" value="1000" id="time-elapsed" placeholder="Enter time elapsed"/>
+                                        </div>
+                                   </div>
+
+                                </div>
+                                <hr style="margin-top:1%"/>
+                                <div class="row" >
+                                    <div class="col-md-12">
+                                        <label>Device Information :  aaa1111</label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label>Serial Number : SERIAL_12345</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <hr style="margin-top:0%"/>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4 card">
+                                     <div class="col-md-12">
+                                       <b> <h4 style="margin-top:0%">Console Readings</h4></b>
+                                     </div>
+
+                                     <div class="col-md-12"><hr style="margin-top:0%"/></div>
+                                        <div class="col-md-12 ">
+                                        <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>SFR</th>
+                                            <th>PM 1</th>
+                                            <th>PM 2</th>
+                                            <th>PM 5</th>
+                                            <th>PM 10</th>
+                                            <th>Elapsed Time</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>9</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>2000</td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                            </div>
+                             <div class="col-md-3 card" style="margin-left:1%;width:32%">
+                                 <div class="col-md-12">
+                                     <b> <h4 style="margin-top:0%">Latest Readings</h4></b>
+                                 </div>
+
+                                 <div class="col-md-12"><hr style="margin-top:0%"/></div>
+                                 <div class="col-md-12 ">
+                                     <table class="table table-bordered" id="params">
+                                         <thead>
+                                         <tr>
+                                             <th>Parameter</th>
+                                             <th>Values</th>
+                                         </tr>
+                                         </thead>
+                                         <tbody>
+                                         <tr>
+                                             <td>SFR</td>
+                                             <td>11</td>
+
+                                           </tr>
+                                         <tr>
+                                             <td>PM 1</td>
+                                             <td>10</td>
+                                         </tr>
+                                         <tr>
+                                             <td>PM 2</td>
+                                             <td>10</td>
+                                         </tr>
+                                         <tr>
+                                             <td>PM 5</td>
+                                             <td>12</td>
+                                         </tr>
+                                         <tr>
+                                             <td>PM 10</td>
+                                             <td>9</td>
+                                         </tr>
+                                         <tr>
+                                             <td>Time Elapsed</td>
+                                             <td>1400</td>
+                                         </tr>
+
+
+
+
+
+                                         </tbody>
+                                         </table>
+                                     </div>
+                             </div>
+                                    <div class="col-md-3 card" style="margin-left:1%;width:32%">
+                                        <div class="col-md-12">
+                                            <b> <h4 style="margin-top:0%">Graph Data</h4></b>
+                                        </div>
+
+                                        <div class="col-md-12"><hr style="margin-top:0%"/></div>
+                                        <div class="col-md-12" id="myDiv" style="height: 400px;">
+
+                                        </div>
+
+                                    </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+        <%- include layouts/footer.ejs%>
+
+    </div>
+</div>
+    </div>
+</body>
+<script>
+    var pm1 = {
+        x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
+        type: 'scatter'
+    };
+    var pm2 = {
+        x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        type: 'scatter'
+    };
+    var data = [pm1, pm2];
+    var layout = {
+        xaxis: {
+            type: 'log',
+            autorange: true
+        },
+        yaxis: {
+            type: 'log',
+            autorange: true
+        }
+    };
+    Plotly.plot('myDiv', data, layout);
+
+</script>
+
+</html>
+
